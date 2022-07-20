@@ -1,0 +1,15 @@
+server:
+  port: 8899
+spring:
+  application:
+    name: springboot-admin
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server01.com:7001/eureka/,http://eureka-server02.com:7002/eureka/
+  instance:
+    instance-id: admin-8899
+    hostname: admin8899.com

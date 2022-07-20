@@ -1,0 +1,29 @@
+server:
+  port: 7002
+
+eureka:
+  instance:
+    hostname: eureka-server02.com
+    prefer-ip-address: false
+    instance-id: server02-7002
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server01.com:7001/eureka/
+
+spring:
+  application:
+    name: server
+  #springboot-admin
+  boot:
+    admin:
+      client:
+        url: http://admin8899.com:8899
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always

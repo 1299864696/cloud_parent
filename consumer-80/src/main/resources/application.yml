@@ -1,0 +1,57 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: consumer
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  sleuth:
+    sampler:
+      rate: 1
+  #springboot-admin
+  boot:
+    admin:
+      client:
+        url: http://admin8899.com:8899
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server01.com:7001/eureka/,http://eureka-server02.com:7002/eureka/
+  instance:
+    instance-id: consumer-80
+    hostname: consumer80.com
+
+feign:
+  circuitbreaker:
+    enabled: true
+  hystrix:
+    enabled: true
+
+##timeout config
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            # hystrix超时时间为4s
+            timeoutInMilliseconds: 10000
+ribbon:
+  # 业务超时时间
+  ReadTimeout: 60000
+  # 建立连接时间
+  ConnectTimeout: 60000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
