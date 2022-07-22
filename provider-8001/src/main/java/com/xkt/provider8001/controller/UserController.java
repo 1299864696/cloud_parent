@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -41,5 +45,12 @@ public class UserController {
     public String fallBack() {
         System.err.println("=====>PORT:" + port + " 降级了");
         return port + "降级了";
+    }
+
+    @GetMapping("/cookie")
+    public Cookie[] cookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        System.out.println(cookies);
+        return cookies;
     }
 }

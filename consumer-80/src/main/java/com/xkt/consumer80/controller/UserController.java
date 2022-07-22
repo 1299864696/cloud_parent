@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author lzx
  * @date 2022/6/22.
@@ -45,5 +48,16 @@ public class UserController {
     public String paymentTimeOutFallbackMethod() {
         System.out.println("80  降级了");
         return "我是消费者80，对付支付系统繁忙请10秒钟后再试或者自己运行出错请检查自己,(┬＿┬)";
+    }
+
+
+    /**
+     * curl http://127.0.0.1/consumer/user/cookie --cookie "username=zx"
+     */
+    @GetMapping("/cookie")
+    public String cookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        String user = userFeign.cookie();
+        return user;
     }
 }

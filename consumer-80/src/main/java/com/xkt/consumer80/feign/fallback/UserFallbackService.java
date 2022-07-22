@@ -23,6 +23,11 @@ public class UserFallbackService implements FallbackFactory<UserFeign> {
                 System.out.println("========================================");
                 return "客户端降级了 timeout" + cause.getMessage();
             }
+
+            @Override
+            public String cookie() {
+                return null;
+            }
         };
     }
 }

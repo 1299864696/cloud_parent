@@ -21,4 +21,7 @@ public interface UserFeign {
 
     @GetMapping("/user/get/timeout")
     String getUserTimeout();
+
+    @GetMapping("/user/cookie")
+    String cookie();
 }

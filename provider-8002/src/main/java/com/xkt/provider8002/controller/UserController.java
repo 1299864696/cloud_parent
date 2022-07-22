@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author lzx
@@ -20,5 +23,12 @@ public class UserController {
     public String getUser() {
         System.err.println("=====>PORT:" + port);
         return port;
+    }
+
+    @GetMapping("/cookie")
+    public Cookie[] cookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        System.out.println(cookies);
+        return cookies;
     }
 }
