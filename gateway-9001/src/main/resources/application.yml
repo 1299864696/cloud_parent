@@ -27,6 +27,12 @@ spring:
           uri: https://www.baidu.com/
           predicates:
             - Path=/baidu
+        - id: provider
+          uri: lb://provider
+          predicates:
+            - Path=/provider/**
+          filters:
+            - StripPrefix=1
 eureka:
   client:
     fetch-registry: true
